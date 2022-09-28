@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Actor;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\StroreActorRequest;
+use App\Http\Requests\StoreActorRequest;
 use App\Http\Resources\ActorResource; 
 use App\Http\Resources\ActorCollection;
 

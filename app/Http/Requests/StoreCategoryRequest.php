@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
@@ -13,7 +14,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,5 +27,15 @@ class StoreCategoryRequest extends FormRequest
         return [
             "name" => "required|min:5"
         ];
+    }
+
+    protected function failedValidation(Validator $v){
+        //lanzar una excepcion HttpResponse en caso
+        //de errores ded validacion 
+        throw new HttpResponseException( response()->json([
+                                                    "success"=> false,
+                                                    "errors"=> $v->errors()
+                                                ], 422) );
+
     }
 }

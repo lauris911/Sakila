@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use Illuminate\Support\Str; 
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
@@ -16,7 +16,6 @@ class CategoryResource extends JsonResource
     {
         return [
             'name' =>Str::upper($this->name),
-            'id' => $this->id ,
             'last_update'=>$this->last_update
         ];
     }

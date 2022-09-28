@@ -1,10 +1,7 @@
 [
     {
         "first_name":"PHP Advanced mode",
-        "last_name" : "PHP for senior programmers",
-        "last_update" : "laravel.org/bootcamps",
-        "updated_at": 2,
-        "created_at":7
+        "last_name" : "PHP for senior programmers"
     }
 
 ]

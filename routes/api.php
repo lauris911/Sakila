@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ActorController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::apiResource('actor' , ActorController::class);
+Route::apiResource('actor',ActorController::class);
+Route::apiResource('category',CategoryController::class);

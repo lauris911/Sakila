@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Resources\CategoryResource; 
+use App\Http\Resources\CategoryCollection;
 
 class CategoryController extends Controller
 {
@@ -24,18 +29,22 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StroreCategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
 
        //verificar que llegó aquí el payload
        //return $request->all();
        //registrar el bootcamp a partir del payload
-
-       $b = Category::create(
-        $request->all()
-        );
-        return response( ["success" => true,
-                        "data"=> $b ] , 201);
+        try{
+            $b = Category::create(
+                $request->all()
+                );
+                return response( ["success" => true,
+                                "data"=> $b ] , 201);
+        }catch(\Exception $e){
+            return response()->json( $e->getmessage() , 400);
+        }
+      
     }
 
     /**

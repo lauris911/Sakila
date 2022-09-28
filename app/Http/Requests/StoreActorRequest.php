@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreActorRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class StoreActorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,5 +29,16 @@ class StoreActorRequest extends FormRequest
             "first_name" => "required|min:5",
             "last_name" => "required"
         ];
+        
+
+    }
+    protected function failedValidation(Validator $v){
+        //lanzar una excepcion HttpResponse en caso
+        //de errores ded validacion 
+        throw new HttpResponseException( response()->json([
+                                                    "success"=> false,
+                                                    "errors"=> $v->errors()
+                                                ], 422) );
+
     }
 }
